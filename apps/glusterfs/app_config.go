@@ -30,14 +30,15 @@ type GlusterFSConfig struct {
 	Loglevel     string                  `json:"loglevel"`
 
 	// advanced settings
-	BrickMaxSize         int    `json:"brick_max_size_gb"`
-	BrickMinSize         int    `json:"brick_min_size_gb"`
-	BrickMaxNum          int    `json:"max_bricks_per_volume"`
-	AverageFileSize      uint64 `json:"average_file_size_kb"`
-	PreReqVolumeOptions  string `json:"pre_request_volume_options"`
-	PostReqVolumeOptions string `json:"post_request_volume_options"`
-	ZoneChecking         string `json:"zone_checking"`
-	MaxVolumesPerCluster int    `json:"max_volumes_per_cluster"`
+	BrickMaxSize             int     `json:"brick_max_size_gb"`
+	BrickMinSize             int     `json:"brick_min_size_gb"`
+	BrickMaxNum              int     `json:"max_bricks_per_volume"`
+	AverageFileSize          uint64  `json:"average_file_size_kb"`
+	PreReqVolumeOptions      string  `json:"pre_request_volume_options"`
+	PostReqVolumeOptions     string  `json:"post_request_volume_options"`
+	ZoneChecking             string  `json:"zone_checking"`
+	MaxVolumesPerCluster     int     `json:"max_volumes_per_cluster"`
+	VolumeReservedAllocation float64 `json:"volume_reserved_allocation"`
 
 	//block settings
 	CreateBlockHostingVolumes bool   `json:"auto_create_block_hosting_volume"`

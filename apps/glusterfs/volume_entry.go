@@ -402,9 +402,10 @@ func (v *VolumeEntry) ModifyReservedSize(delta int) error {
 	return nil
 }
 
-//ReduceRawSize reserves 2% of size for block volume creation
+//ReduceRawSize reserves a percentage of size for block volume creation
+//Defaults to 0.02
 func ReduceRawSize(size int) int {
-	return size * 98 / 100
+	return int(float64(size) * (1.0 - VolumeReservedAllocation))
 }
 
 // AddRawCapacity adds raw capacity to the BlockInfo

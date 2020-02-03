@@ -392,6 +392,16 @@ func (a *App) setFromEnvironmentalVariable() {
 			logger.LogError("Error: While parsing HEKETI_GLUSTER_MAX_VOLUMES_PER_CLUSTER: %v", err)
 		}
 	}
+
+	env = os.Getenv("HEKETI_VOLUME_RESERVED_ALLOCATION")
+	if "" != env {
+		value, err := strconv.ParseFloat(env, 64)
+		if err != nil {
+			logger.LogError("Error: While parsing HEKETI_VOLUME_RESERVED_ALLOCATION: %v", err)
+		} else {
+			a.conf.VolumeReservedAllocation = float64(value)
+		}
+	}
 }
 
 func (a *App) setAdvSettings() {
@@ -440,6 +450,10 @@ func (a *App) setAdvSettings() {
 		logger.Info("Volumes per cluster limit is set to %v", a.conf.MaxVolumesPerCluster)
 		maxVolumesPerCluster = a.conf.MaxVolumesPerCluster
 	}
+	if a.conf.VolumeReservedAllocation > 0 && a.conf.VolumeReservedAllocation < 1 {
+		logger.Info("Block: New Volume Reserved Allocation: %v", a.conf.VolumeReservedAllocation)
+		VolumeReservedAllocation = a.conf.VolumeReservedAllocation
+	}
 }
 
 func (a *App) setBlockSettings() {
@@ -459,7 +473,6 @@ func (a *App) setBlockSettings() {
 		logger.Info("Block: New Block Hosting Volume Options: %v", a.conf.BlockHostingVolumeOptions)
 		BlockHostingVolumeOptions = a.conf.BlockHostingVolumeOptions
 	}
-
 }
 
 // Register Routes

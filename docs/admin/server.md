@@ -46,6 +46,7 @@ The following configuration options should only be set on advanced configuration
 * brick_max_size_gb: _int_, Maximum brick size (Gb)
 * brick_min_size_gb: _int_, Minimum brick size (Gb)
 * max_bricks_per_volume: _int_, Maximum number of bricks per volume
+* volume_reserved_allocation: _float64_, Percentage of volume reserved allocation for metadata
 
 Example:
 
